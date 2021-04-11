@@ -6,7 +6,7 @@
   "azureFunctions.preDeployTask": "publish",
   "liveServer.settings.proxy": {
     "enable": true,
-    "baseUri": "/",
-    "proxyUri": "http://localhost:5500/Client/wwwroot"
+    "baseUri": "/Api",
+    "proxyUri": "http://localhost:7071/api"
   }
 }

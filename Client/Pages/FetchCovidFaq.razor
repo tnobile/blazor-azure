@@ -1,0 +1,42 @@
+@page "/fetchfaq"
+@using BlazorApp.Shared 
+@inject HttpClient Http
+
+<div class="d-flex justify-content-center">
+    <img src="../images/COVID_banner.jpeg" alt="Image" style="width:80%; height:300px" />
+</div>
+<br />
+<div class="d-flex justify-content-center">
+    <h1>Frequently asked Questions on Covid-19</h1>
+</div>
+<hr />
+
+@if (questionList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @foreach (var question in questionList)
+    {
+        <div class="card">
+            <h3 class="card-header">
+                @question.Question
+            </h3>
+            <div class="card-body">
+                <p class="card-text">@question.Answer</p>
+            </div>
+        </div>
+        <br />
+    }
+}
+
+@code {
+
+    private Faq[] questionList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        questionList = await Http.GetFromJsonAsync<Faq[]>("https://covidfaqfunc.azurewebsites.net/api/CovidFaq");
+    }
+}
