@@ -42,6 +42,7 @@ else
     {
       try
       {
+        Http.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8");
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("/api/WeatherForecast");
       }
       catch (Exception ex)
